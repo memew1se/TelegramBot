@@ -1,8 +1,8 @@
 from aiogram import Bot, Dispatcher, executor
-from config import bot_token
+from config import BOT_TOKEN
 
 
-bot = Bot(bot_token, parse_mode='HTML')
+bot = Bot(BOT_TOKEN, parse_mode='HTML')
 dp = Dispatcher(bot)
 
 

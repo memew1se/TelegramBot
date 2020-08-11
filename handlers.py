@@ -1,10 +1,10 @@
 from main import bot, dp
 from aiogram.types import Message
-from config import admin_id
+from config import ADMIN_ID
 
 
 async def send_to_admin(*args):
-    await bot.send_message(chat_id=admin_id, text='Бот запущен (ый)')
+    await bot.send_message(chat_id=ADMIN_ID, text='Бот запущен (ый)')
 
 
 @dp.message_handler()

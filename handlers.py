@@ -9,6 +9,7 @@ async def send_to_admin(*args):
 
 @dp.message_handler()
 async def echo(message: Message):
-    text = f"Привет, ты написал {message.text}"
-    await message.answer(text=text)
+    with open("lain.jpg", "rb") as photo:
+        text = f"Привет, ты написал {message.text}"
+        await message.reply_photo(photo, caption=text)
 

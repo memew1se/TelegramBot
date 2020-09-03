@@ -4,7 +4,7 @@ from data.config import BOT_TOKEN, ADMIN_ID
 
 
 async def on_startup(dp):
-    from utils.misc.notify_admins import on_startup_notify
+    from utils.misc import on_startup_notify
     await on_startup_notify(dp)
 
 if __name__ == '__main__':

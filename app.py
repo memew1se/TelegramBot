@@ -4,6 +4,9 @@ from data.config import BOT_TOKEN, ADMIN_ID
 
 
 async def on_startup(dp):
+    import middlewares
+    middlewares.setup(dp)
+
     from utils.misc import on_startup_notify
     await on_startup_notify(dp)
 

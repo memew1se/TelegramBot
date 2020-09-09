@@ -1,19 +1,17 @@
 import asyncio
 
 from aiogram import Bot, Dispatcher, executor, types
-from aiogram.contrib.fsm_storage.redis import RedisStorage2
 from aiogram.dispatcher import DEFAULT_RATE_LIMIT
 from aiogram.dispatcher.handler import CancelHandler, current_handler
 from aiogram.dispatcher.middlewares import BaseMiddleware
 from aiogram.utils.exceptions import Throttled
+from data.config import BOT_TOKEN
 
-TOKEN = 'BOT_TOKEN_HERE'
+TOKEN = BOT_TOKEN
 
-# In this example Redis storage is used
-storage = RedisStorage2(db=5)
 
 bot = Bot(token=TOKEN)
-dp = Dispatcher(bot, storage=storage)
+dp = Dispatcher(bot)
 
 
 def rate_limit(limit: int, key=None):
@@ -92,7 +90,7 @@ class ThrottlingMiddleware(BaseMiddleware):
 
         # Prevent flooding
         if throttled.exceeded_count <= 2:
-            await message.reply('Too many requests! ')
+            await message.reply('Слишком много запросов! ')
 
         # Sleep.
         await asyncio.sleep(delta)

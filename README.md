@@ -1,5 +1,5 @@
 # Как это работает?
 А никак это бJ|ять не работает, сервера нет на#уй
-![zaebis](https://cs7.pikabu.ru/images/big_size_comm/2014-07_5/14062890765552.jpeg)
+![](https://user-images.githubusercontent.com/63961428/92727901-86b73480-f378-11ea-9ad8-217d7aa32b13.jpeg)
 ## Как это должно работать
 TODO

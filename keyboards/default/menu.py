@@ -5,6 +5,9 @@ menu = ReplyKeyboardMarkup(
         [
             KeyboardButton(text="Git"),
             KeyboardButton(text="SSH")
+        ],
+        [
+            KeyboardButton(text="Never mind...")
         ]
     ],
     resize_keyboard=True

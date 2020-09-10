@@ -13,6 +13,7 @@ async def on_startup_notify(dp: dispatcher):
             new_session_number = int(last_session[0]) + 1
             new_session_time = strftime("%Y-%m-%d %H:%M:%S", localtime())
             start_log.write(f"\n{new_session_number} | {new_session_time}")
+
         else:
             new_session_number = 0
             new_session_time = strftime("%Y-%m-%d %H:%M:%S", localtime())

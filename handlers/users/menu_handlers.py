@@ -1,31 +1,45 @@
+import logging
+
 from aiogram.dispatcher.filters import Command, Text
-from aiogram.types import Message, ReplyKeyboardRemove
-from keyboards.default import menu
+from aiogram.types import Message, CallbackQuery
+
+from keyboards.inline.menu_keyboard import shell_keyboard,shell_callback
 from middlewares import rate_limit
+
 from loader import dp, bot
 
 
-@rate_limit(1)
 @dp.message_handler(Command("menu"))
 async def show_menu(message: Message):
-    await message.answer("Chose shell ", reply_markup=menu)
+    await message.answer("Chose shell ", reply_markup=shell_keyboard)
 
 
-@rate_limit(1)
-@dp.message_handler(Text(equals=["Git", "git"]))
-async def git_shell(message: Message):
-    await message.answer(f"Enter commands for Git ", reply_markup=ReplyKeyboardRemove())
+@dp.callback_query_handler(shell_callback.filter(shell_name="git"))
+async def git_shell(call: CallbackQuery):
+    await call.answer(cache_time=60)
+
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+
+    await call.message.answer(f"Enter commands for Git ")
+    await call.message.edit_reply_markup(reply_markup=None)
 
 
-@rate_limit(1)
-@dp.message_handler(Text(equals=["ssh", "SSH"]))
-async def ssh_shell(message: Message):
-    print(message)
-    print(type(message))
-    await message.answer(f"Enter commands for SSH ", reply_markup=ReplyKeyboardRemove())
+
+@dp.callback_query_handler(shell_callback.filter(shell_name="ssh"))
+async def ssh_shell(call: CallbackQuery):
+    await call.answer(cache_time=60)
+
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+
+    await call.message.answer(f"Enter commands for SSH ")
+    await call.message.edit_reply_markup(reply_markup=None)
 
 
-@rate_limit(1)
-@dp.message_handler(Text(equals="Never mind..."))
-async def default_shell(message: Message):
-    await message.answer(f"Ok... ", reply_markup=ReplyKeyboardRemove())
+@dp.callback_query_handler(text="cancel")
+async def default_shell(call: CallbackQuery):
+    callback_data = call.data
+    logging.info(f"{callback_data=}")
+
+    await call.message.edit_reply_markup(reply_markup=None)

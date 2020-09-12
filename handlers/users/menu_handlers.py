@@ -3,7 +3,7 @@ import logging
 from aiogram.dispatcher.filters import Command, Text
 from aiogram.types import Message, CallbackQuery
 
-from keyboards.inline.menu_keyboard import shell_keyboard,shell_callback
+from keyboards.inline.menu_keyboard import shell_keyboard, shell_callback
 from middlewares import rate_limit
 
 from loader import dp, bot
@@ -23,7 +23,6 @@ async def git_shell(call: CallbackQuery):
 
     await call.message.answer(f"Enter commands for Git ")
     await call.message.edit_reply_markup(reply_markup=None)
-
 
 
 @dp.callback_query_handler(shell_callback.filter(shell_name="ssh"))

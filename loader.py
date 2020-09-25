@@ -15,5 +15,4 @@ logging.basicConfig(format='%(filename)s '
                            '#%(levelname)-8s '
                            '[%(asctime)s]  '
                            '%(message)s',
-                    level=logging.INFO,
-                    )
+                    level=logging.INFO)

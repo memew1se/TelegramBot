@@ -1,6 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 
+from aiogram.utils.markdown import hlink
+
 URL = "https://explainshell.com/explain/1/"
 HEADERS = {"user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, "
                          "like Gecko) Chrome/85.0.4183.121 Safari/537.36",
@@ -23,8 +25,9 @@ def get_content(html):
         command_info[0] = command_info[0][0:len(command_info[0])-3]
 
         command_link = command_html.a["href"]
+        command_link = hlink("Manual", command_link)
 
-        command_result = " ".join(command_info) + "\nManual: " + command_link
+        command_result = " ".join(command_info) + "\n " + command_link
         return command_result
 
     else:
